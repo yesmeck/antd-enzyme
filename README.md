@@ -16,7 +16,7 @@ test('app', t => {
   const handleChange = sinon.spy()
   const wrapper = mount(<SelectForm handleChange={handleChange} />)
 
-  const select = wrapper.antd().find('Select')
+  const select = wrapper.antd().find('Select') // <=== Find antd's Select component
 
   select.simulate('change', { target: { value: 1 } })
 
