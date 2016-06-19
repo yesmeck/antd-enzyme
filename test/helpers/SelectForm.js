@@ -17,6 +17,12 @@ export default function SelectForm({ handleChange }) {
         <Option value="apple">Apple</Option>
         <Option value="banana">Banana</Option>
       </Select>
+
+      <Select tags name="music" onChange={handleChange}>
+        <Option value="pop">Pop</Option>
+        <Option value="rock">Rock</Option>
+        <Option value="jazz">Jazz</Option>
+      </Select>
     </div>
   )
 }
