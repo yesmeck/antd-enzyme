@@ -21,7 +21,7 @@ const createAntdWrapper = function(wrapper) {
   }
 
   AntdWrapper.prototype.simulate = function(event, mock) {
-    let value = mock.target.value
+    let { value } = mock.target
     if (!Array.isArray(value)) {
       value = [value]
     }
