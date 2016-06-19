@@ -6,8 +6,22 @@
   "scripts": {
     "test": "ava"
   },
-  "author": "",
+  "author": "Wei Zhu <yesmeck@gmail.com>",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "enzyme",
+    "ant-design",
+    "antd"
+  ],
+  "homepage": "https://github.com/yesmeck/antd-enzyme#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yesmeck/antd-enzyme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yesmeck/antd-enzyme/issues"
+  },
   "ava": {
     "babel": "inherit",
     "require": [
