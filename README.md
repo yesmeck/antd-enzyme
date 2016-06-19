@@ -1,5 +1,7 @@
 # antd-enzyme
 
+[![Build Status](https://travis-ci.org/yesmeck/antd-enzyme.svg?branch=master)](https://travis-ci.org/yesmeck/antd-enzyme)
+
 [Enzyme](https://github.com/airbnb/enzyme) enhancer for [Ant Design](https://github.com/ant-design/ant-design) components.
 
 
