@@ -9,9 +9,9 @@ test('app', t => {
   const handleChange = sinon.spy()
   const wrapper = mount(<SelectForm handleChange={handleChange} />)
 
-  const select = wrapper.antd().find('Select')
+  const select = wrapper.antd().find('Select', { name: 'color' })
 
-  select.simulate('change', { target: { value: 1 } })
+  select.simulate('change', { target: { value: 'green' } })
 
-  t.is(handleChange.firstCall.args[0], 1)
+  t.is(handleChange.firstCall.args[0], 'green')
 })

@@ -1,5 +1,7 @@
 import ReactWrapper from 'enzyme/ReactWrapper'
+import isSubset from 'is-subset'
 import Select from 'rc-select'
+
 
 const components = {
   Select
@@ -10,8 +12,12 @@ const createAntdWrapper = function(wrapper) {
   AntdWrapper.prototype = wrapper
 
   const origFind = wrapper.find
-  AntdWrapper.prototype.find = function(selector) {
-    return createAntdWrapper(origFind.call(wrapper, components[selector]))
+  AntdWrapper.prototype.find = function(component, selector) {
+    return createAntdWrapper(
+      origFind.call(wrapper, components[component]).filterWhere(node => {
+        return isSubset(node.props(), selector)
+      })
+    )
   }
 
   AntdWrapper.prototype.simulate = function(event, mock) {

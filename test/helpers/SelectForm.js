@@ -6,11 +6,16 @@ const Option = Select.Option
 export default function SelectForm({ handleChange }) {
   return (
     <div>
-      <Select mingzi="aLongName" defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
-        <Option value="jack">Jack</Option>
-        <Option value="lucy">Lucy</Option>
-        <Option value="disabled" disabled>Disabled</Option>
-        <Option value="yiminghe">yiminghe</Option>
+      <Select name="color" defaultValue="blue" onChange={handleChange}>
+        <Option value="blue">Blue</Option>
+        <Option value="green">Geen</Option>
+        <Option value="red">Red</Option>
+      </Select>
+
+      <Select name="fruit" defaultValue="apple">
+        <Option value="orange">Orange</Option>
+        <Option value="apple">Apple</Option>
+        <Option value="banana">Banana</Option>
       </Select>
     </div>
   )
