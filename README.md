@@ -1,6 +1,6 @@
 # antd-enzyme
 
-[enzyme](https://github.com/airbnb/enzyme) enhancer for [Ant Design](https://github.com/ant-design/ant-design) components.
+[Enzyme](https://github.com/airbnb/enzyme) enhancer for [Ant Design](https://github.com/ant-design/ant-design) components.
 
 
 # Basic Usage
