@@ -36,5 +36,8 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "sinon": "^1.17.4"
+  },
+  "peerDependencies": {
+    "rc-select": "^6.4.0"
   }
 }
