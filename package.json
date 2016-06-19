@@ -1,6 +1,6 @@
 {
   "name": "antd-enzyme",
-  "version": "0.0.1",
+  "version": "0.0.1-dev",
   "description": "enzyme enhancer for Ant Design components",
   "main": "lib/patch.js",
   "scripts": {
