@@ -5,13 +5,13 @@ const components = {
   Select
 }
 
-const crreateAntdWrapper = function(wrapper) {
+const createAntdWrapper = function(wrapper) {
   function AntdWrapper() {}
   AntdWrapper.prototype = wrapper
 
   const origFind = wrapper.find
   AntdWrapper.prototype.find = function(selector) {
-    return crreateAntdWrapper(origFind.call(wrapper, components[selector]))
+    return createAntdWrapper(origFind.call(wrapper, components[selector]))
   }
 
   AntdWrapper.prototype.simulate = function(event, mock) {
@@ -26,5 +26,5 @@ const crreateAntdWrapper = function(wrapper) {
 }
 
 ReactWrapper.prototype.antd = function() {
-  return crreateAntdWrapper(this)
+  return createAntdWrapper(this)
 }
