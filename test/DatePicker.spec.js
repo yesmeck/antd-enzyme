@@ -31,3 +31,16 @@ test('month picker', t => {
   t.is(handleChange.firstCall.args[0].getTime(), new Date('2016-06-01').getTime())
   t.is(handleChange.firstCall.args[1], '2016-06')
 })
+
+test('range picker', t => {
+  const { handleChange, wrapper } = t.context
+  const rangePicker = wrapper.antd().find('RangePicker', { name: 'dateRange' })
+
+  rangePicker.simulate('change', { target: { value: ['2016-06-01', '2016-06-30'] } })
+
+  t.true(handleChange.calledOnce)
+
+  t.is(handleChange.firstCall.args[0][0].getTime(), new Date('2016-06-01').getTime())
+  t.is(handleChange.firstCall.args[0][1].getTime(), new Date('2016-06-30').getTime())
+  t.deepEqual(handleChange.firstCall.args[1], ['2016-06-01', '2016-06-30'])
+})

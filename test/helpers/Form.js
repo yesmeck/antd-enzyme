@@ -27,6 +27,8 @@ export default function Form({ handleChange }) {
       <DatePicker name="birthday" onChange={handleChange} />
 
       <DatePicker.MonthPicker name="month" onChange={handleChange} />
+
+      <DatePicker.RangePicker name="dateRange" onChange={handleChange} />
     </div>
   )
 }

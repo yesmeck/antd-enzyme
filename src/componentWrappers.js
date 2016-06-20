@@ -3,6 +3,7 @@ import GregorianCalendar from 'gregorian-calendar'
 import GregorianCalendarLocale from 'gregorian-calendar/lib/locale/zh_CN'
 import Select from 'rc-select'
 import { DatePicker } from 'antd'
+import RangePicker from 'antd/lib/date-picker/RangePicker'
 import Picker from 'rc-calendar/lib/Picker'
 
 export function createSelectWrapper(wrapper) {
@@ -62,4 +63,33 @@ export function createDatePickerWrapper(wrapper, component) {
   }
 
   return datePickerWrapper
+}
+
+export function createRangePickerWrapper(wrapper) {
+  function RangePickerWrapper() {}
+
+  RangePickerWrapper.prototype = wrapper
+
+  const rangePickerWrapper = new RangePickerWrapper
+
+  const origFind = wrapper.find
+  rangePickerWrapper.find = function(selector) {
+    return createRangePickerWrapper(
+      origFind.call(wrapper, RangePicker).filterWhere(node => {
+        return isSubset(node.props(), selector)
+      })
+    )
+  }
+
+  rangePickerWrapper.simulate = function(event, mock) {
+    let { value } = mock.target
+    const values = value.map(v => {
+      const date = new GregorianCalendar(GregorianCalendarLocale)
+      date.setTime(+new Date(v))
+      return date
+    })
+    this.node.handleChange(values)
+  }
+
+  return rangePickerWrapper
 }

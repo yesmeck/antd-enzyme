@@ -1,6 +1,7 @@
 import {
   createSelectWrapper,
   createDatePickerWrapper,
+  createRangePickerWrapper,
 } from './componentWrappers'
 
 export default class AntdWrapper {
@@ -15,6 +16,8 @@ export default class AntdWrapper {
       case 'DatePicker':
       case 'MonthPicker':
         return createDatePickerWrapper(this.wrapper, component).find(selector)
+      case 'RangePicker':
+        return createRangePickerWrapper(this.wrapper).find(selector)
       break;
     }
   }
