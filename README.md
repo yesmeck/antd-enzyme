@@ -5,7 +5,7 @@
 [Enzyme](https://github.com/airbnb/enzyme) enhancer for [Ant Design](https://github.com/ant-design/ant-design) components.
 
 
-# Basic Usage
+## Basic Usage
 
 ```javascript
 import test from 'ava'
@@ -26,3 +26,8 @@ test('app', t => {
   t.is(handleChange.firstCall.args[0], 'green')
 })
 ```
+
+## Supported components
+
+* DatePicker
+* Select
