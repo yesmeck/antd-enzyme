@@ -1,34 +1,47 @@
 import React from 'react'
-import { Select, DatePicker } from 'antd'
+import { Select, DatePicker, Cascader } from 'antd'
 
 const Option = Select.Option
+
+const options = [
+  {
+    value: 'zhejiang',
+    label: '浙江',
+    children: [
+      {
+        value: 'hangzhou',
+        label: '杭州',
+        children: [
+          {
+            value: 'xihu',
+            label: '西湖',
+          }
+        ],
+      }
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: '江苏',
+    children: [
+      {
+        value: 'nanjing',
+        label: '南京',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: '中华门',
+          }
+        ],
+      }
+    ],
+  }
+]
 
 export default function Form({ handleChange }) {
   return (
     <div>
-      <Select name="color" onChange={handleChange}>
-        <Option value="blue">Blue</Option>
-        <Option value="green">Geen</Option>
-        <Option value="red">Red</Option>
-      </Select>
-
-      <Select multiple name="fruit" onChange={handleChange}>
-        <Option value="orange">Orange</Option>
-        <Option value="apple">Apple</Option>
-        <Option value="banana">Banana</Option>
-      </Select>
-
-      <Select tags name="music" onChange={handleChange}>
-        <Option value="pop">Pop</Option>
-        <Option value="rock">Rock</Option>
-        <Option value="jazz">Jazz</Option>
-      </Select>
-
-      <DatePicker name="birthday" onChange={handleChange} />
-
-      <DatePicker.MonthPicker name="month" onChange={handleChange} />
-
-      <DatePicker.RangePicker name="dateRange" onChange={handleChange} />
+      <Cascader options={options} handleChange={onChange} />
     </div>
   )
 }

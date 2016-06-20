@@ -3,7 +3,17 @@ import sinon from 'sinon'
 import '../src/patch'
 import { mount } from 'enzyme'
 import React from 'react'
-import Form from './helpers/Form'
+import { DatePicker } from 'antd'
+
+function Form({ handleChange }) {
+  return (
+    <div>
+      <DatePicker name="basic" onChange={handleChange} />
+      <DatePicker.MonthPicker name="month" onChange={handleChange} />
+      <DatePicker.RangePicker name="range" onChange={handleChange} />
+    </div>
+  )
+}
 
 test.beforeEach(t => {
   t.context.handleChange = sinon.spy()
@@ -12,7 +22,7 @@ test.beforeEach(t => {
 
 test('basic', t => {
   const { handleChange, wrapper } = t.context
-  const datePicker = wrapper.antd().find('DatePicker', { name: 'birthday' })
+  const datePicker = wrapper.antd().find('DatePicker', { name: 'basic' })
 
   datePicker.simulate('change', { target: { value: '2016-06-20' } })
 
@@ -34,7 +44,7 @@ test('month picker', t => {
 
 test('range picker', t => {
   const { handleChange, wrapper } = t.context
-  const rangePicker = wrapper.antd().find('RangePicker', { name: 'dateRange' })
+  const rangePicker = wrapper.antd().find('RangePicker', { name: 'range' })
 
   rangePicker.simulate('change', { target: { value: ['2016-06-01', '2016-06-30'] } })
 

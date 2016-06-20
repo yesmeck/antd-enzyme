@@ -2,7 +2,7 @@ import isSubset from 'is-subset'
 import GregorianCalendar from 'gregorian-calendar'
 import GregorianCalendarLocale from 'gregorian-calendar/lib/locale/zh_CN'
 import Select from 'rc-select'
-import { DatePicker } from 'antd'
+import { DatePicker, Cascader } from 'antd'
 import RangePicker from 'antd/lib/date-picker/RangePicker'
 import Picker from 'rc-calendar/lib/Picker'
 
@@ -92,4 +92,37 @@ export function createRangePickerWrapper(wrapper) {
   }
 
   return rangePickerWrapper
+}
+
+export function createCascaderWrapper(wrapper) {
+  function CascaderWrapper() {}
+
+  CascaderWrapper.prototype = wrapper
+
+  const cascaderWrapper = new CascaderWrapper
+
+  const origFind = wrapper.find
+  cascaderWrapper.find = function(selector) {
+    return createCascaderWrapper(
+      origFind.call(wrapper, Cascader).filterWhere(node => {
+        return isSubset(node.props(), selector)
+      })
+    )
+  }
+
+  cascaderWrapper.simulate = function(event, mock) {
+    const findOptions = (options, values, selectedOptions = []) => {
+      const [ value, ...rest ] = values
+      const option = options.find(option => option.value === value)
+      selectedOptions.push(option)
+      if (rest.length > 0) {
+        return findOptions(option.children, rest, selectedOptions)
+      }
+      return selectedOptions
+    }
+    let { value } = mock.target
+    this.node.handleChange(value, findOptions(this.props().options, value))
+  }
+
+  return cascaderWrapper
 }
