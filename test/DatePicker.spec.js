@@ -1,0 +1,22 @@
+import test from 'ava'
+import sinon from 'sinon'
+import '../src/patch'
+import { mount } from 'enzyme'
+import React from 'react'
+import Form from './helpers/Form'
+
+test.beforeEach(t => {
+  t.context.handleChange = sinon.spy()
+  t.context.wrapper = mount(<Form handleChange={t.context.handleChange} />)
+})
+
+test('basic', t => {
+  const { handleChange, wrapper } = t.context
+  const datePicker = wrapper.antd().find('DatePicker', { name: 'date' })
+
+  datePicker.simulate('change', { target: { value: '2016-06-20' } })
+
+  t.true(handleChange.calledOnce)
+  t.is(handleChange.firstCall.args[0].getTime(), new Date('2016-06-20').getTime())
+  t.is(handleChange.firstCall.args[1], '2016-06-20')
+})

@@ -3,39 +3,39 @@ import sinon from 'sinon'
 import '../src/patch'
 import { mount } from 'enzyme'
 import React from 'react'
-import SelectForm from './helpers/SelectForm'
+import Form from './helpers/Form'
 
 test.beforeEach(t => {
   t.context.handleChange = sinon.spy()
-  t.context.wrapper = mount(<SelectForm handleChange={t.context.handleChange} />)
+  t.context.wrapper = mount(<Form handleChange={t.context.handleChange} />)
 })
 
-test('basic select', t => {
+test('basic', t => {
   const { handleChange, wrapper } = t.context
   const select = wrapper.antd().find('Select', { name: 'color' })
 
   select.simulate('change', { target: { value: 'green' } })
 
   t.true(handleChange.calledOnce)
-  t.is(handleChange.firstCall.args[0], 'green')
+  t.true(handleChange.calledWith('green'))
 })
 
-test('multiple select', t => {
+test('multiple', t => {
   const { handleChange, wrapper } = t.context
   const select = wrapper.antd().find('Select', { name: 'fruit' })
 
   select.simulate('change', { target: { value: ['apple', 'banana'] } })
 
   t.true(handleChange.calledOnce)
-  t.deepEqual(handleChange.firstCall.args[0], ['apple', 'banana'])
+  t.true(handleChange.calledWith(['apple', 'banana']))
 })
 
-test('tag select', t => {
+test('tag', t => {
   const { handleChange, wrapper } = t.context
   const select = wrapper.antd().find('Select', { name: 'music' })
 
   select.simulate('change', { target: { value: ['rock', 'jazz'] } })
 
   t.true(handleChange.calledOnce)
-  t.deepEqual(handleChange.firstCall.args[0], ['rock', 'jazz'])
+  t.true(handleChange.calledWith(['rock', 'jazz']))
 })

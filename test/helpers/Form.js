@@ -1,9 +1,9 @@
 import React from 'react'
-import { Select } from 'antd'
+import { Select, DatePicker } from 'antd'
 
 const Option = Select.Option
 
-export default function SelectForm({ handleChange }) {
+export default function Form({ handleChange }) {
   return (
     <div>
       <Select name="color" onChange={handleChange}>
@@ -23,6 +23,8 @@ export default function SelectForm({ handleChange }) {
         <Option value="rock">Rock</Option>
         <Option value="jazz">Jazz</Option>
       </Select>
+
+      <DatePicker name="date" onChange={handleChange} />
     </div>
   )
 }
