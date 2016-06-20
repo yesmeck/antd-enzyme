@@ -12,11 +12,22 @@ test.beforeEach(t => {
 
 test('basic', t => {
   const { handleChange, wrapper } = t.context
-  const datePicker = wrapper.antd().find('DatePicker', { name: 'date' })
+  const datePicker = wrapper.antd().find('DatePicker', { name: 'birthday' })
 
   datePicker.simulate('change', { target: { value: '2016-06-20' } })
 
   t.true(handleChange.calledOnce)
   t.is(handleChange.firstCall.args[0].getTime(), new Date('2016-06-20').getTime())
   t.is(handleChange.firstCall.args[1], '2016-06-20')
+})
+
+test('month picker', t => {
+  const { handleChange, wrapper } = t.context
+  const monthPicker = wrapper.antd().find('MonthPicker', { name: 'month' })
+
+  monthPicker.simulate('change', { target: { value: '2016-06' } })
+
+  t.true(handleChange.calledOnce)
+  t.is(handleChange.firstCall.args[0].getTime(), new Date('2016-06-01').getTime())
+  t.is(handleChange.firstCall.args[1], '2016-06')
 })

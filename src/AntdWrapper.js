@@ -13,7 +13,8 @@ export default class AntdWrapper {
       case 'Select':
         return createSelectWrapper(this.wrapper).find(selector)
       case 'DatePicker':
-        return createDatePickerWrapper(this.wrapper).find(selector)
+      case 'MonthPicker':
+        return createDatePickerWrapper(this.wrapper, component).find(selector)
       break;
     }
   }

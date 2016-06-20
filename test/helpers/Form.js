@@ -24,7 +24,9 @@ export default function Form({ handleChange }) {
         <Option value="jazz">Jazz</Option>
       </Select>
 
-      <DatePicker name="date" onChange={handleChange} />
+      <DatePicker name="birthday" onChange={handleChange} />
+
+      <DatePicker.MonthPicker name="month" onChange={handleChange} />
     </div>
   )
 }

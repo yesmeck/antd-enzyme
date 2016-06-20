@@ -33,7 +33,12 @@ export function createSelectWrapper(wrapper) {
   return selectWrapper
 }
 
-export function createDatePickerWrapper(wrapper) {
+export function createDatePickerWrapper(wrapper, component) {
+  const components = {
+    DatePicker,
+    MonthPicker: DatePicker.MonthPicker,
+  }
+
   function DatePickerWrapper() {}
 
   DatePickerWrapper.prototype = wrapper
@@ -43,7 +48,7 @@ export function createDatePickerWrapper(wrapper) {
   const origFind = wrapper.find
   datePickerWrapper.find = function(selector) {
     return createDatePickerWrapper(
-      origFind.call(wrapper, DatePicker).filterWhere(node => {
+      origFind.call(wrapper, components[component]).filterWhere(node => {
         return isSubset(node.props(), selector)
       }).find(Picker)
     )
