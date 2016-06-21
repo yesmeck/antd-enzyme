@@ -33,3 +33,4 @@ test('app', t => {
 * DatePicker
 * Rate
 * Select
+* Slider

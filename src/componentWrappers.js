@@ -6,6 +6,7 @@ import { DatePicker, Cascader } from 'antd'
 import RangePicker from 'antd/lib/date-picker/RangePicker'
 import Picker from 'rc-calendar/lib/Picker'
 import Rate from 'rc-rate/lib/Rate'
+import Slider from 'rc-slider/lib/Slider'
 
 const components = {
   Select,
@@ -14,6 +15,7 @@ const components = {
   RangePicker: RangePicker,
   Cascader,
   Rate,
+  Slider,
 }
 
 class ComponentWrapper {
@@ -87,5 +89,17 @@ export class RateWrapper extends ComponentWrapper {
     const { value } = mock.target
     this.wrapper.node.getStarValue = () => value
     this.wrapper.node.onClick(mock)
+  }
+}
+
+export class SliderWrapper extends ComponentWrapper {
+  simulate(event, mock) {
+    let { value } = mock.target
+    if (this.wrapper.props().range) {
+      value = { lowerBound: value[0], upperBound: value[1] }
+    } else {
+      value = { upperBound: value }
+    }
+    this.wrapper.node.onChange(value)
   }
 }

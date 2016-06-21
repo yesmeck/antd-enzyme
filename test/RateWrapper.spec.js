@@ -21,9 +21,9 @@ test.beforeEach(t => {
 
 test('basic', t => {
   const { handleChange, wrapper } = t.context
-  const datePicker = wrapper.antd('Rate').find({ name: 'basic' })
+  const rate = wrapper.antd('Rate').find({ name: 'basic' })
 
-  datePicker.simulate('change', { target: { value: 3 } })
+  rate.simulate('change', { target: { value: 3 } })
 
   t.true(handleChange.calledOnce)
   t.deepEqual(handleChange.firstCall.args, [3])
@@ -31,9 +31,9 @@ test('basic', t => {
 
 test('allow half', t => {
   const { handleChange, wrapper } = t.context
-  const datePicker = wrapper.antd('Rate').find({ name: 'allowHalf' })
+  const rate = wrapper.antd('Rate').find({ name: 'allowHalf' })
 
-  datePicker.simulate('change', { target: { value: 3.5 } })
+  rate.simulate('change', { target: { value: 3.5 } })
 
   t.true(handleChange.calledOnce)
   t.deepEqual(handleChange.firstCall.args, [3.5])

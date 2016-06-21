@@ -4,6 +4,7 @@ import {
   RangePickerWrapper,
   CascaderWrapper,
   RateWrapper,
+  SliderWrapper,
 } from './componentWrappers'
 
 export default class AntdWrapper {
@@ -27,6 +28,9 @@ export default class AntdWrapper {
         break
       case 'Rate':
         this.ComponentWrapper = RateWrapper
+        break
+      case 'Slider':
+        this.ComponentWrapper = SliderWrapper
         break
     }
   }
