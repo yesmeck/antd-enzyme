@@ -7,111 +7,66 @@ import RangePicker from 'antd/lib/date-picker/RangePicker'
 import Picker from 'rc-calendar/lib/Picker'
 import Rate from 'rc-rate/lib/Rate'
 
-export function createSelectWrapper(wrapper) {
-  function SelectWrapper() {}
+const components = {
+  Select,
+  DatePicker,
+  MonthPicker: DatePicker.MonthPicker,
+  RangePicker: RangePicker,
+  Cascader,
+  Rate,
+}
 
-  SelectWrapper.prototype = wrapper
-
-  const selectWrapper = new SelectWrapper
-
-  const origFind = wrapper.find
-  selectWrapper.find = function(selector) {
-    return createSelectWrapper(
-      origFind.call(wrapper, Select).filterWhere(node => {
-        return isSubset(node.props(), selector)
-      })
-    )
+class ComponentWrapper {
+  constructor(wrapper, name) {
+    this.wrapper = wrapper
+    this.name = name
   }
 
-  selectWrapper.simulate = function(event, mock) {
+  find(selector) {
+    return this.wrapper
+      .find(components[this.name])
+      .filterWhere(node => isSubset(node.props(), selector))
+  }
+}
+
+export class SelectWrapper extends ComponentWrapper {
+  simulate(event, mock) {
     let { value } = mock.target
     if (!Array.isArray(value)) {
       value = [value]
     }
     value = value.map(v => ({ key: v }))
-    this.node.fireChange(value)
+    this.wrapper.node.fireChange(value)
   }
-
-  return selectWrapper
 }
 
-export function createDatePickerWrapper(wrapper, component) {
-  const components = {
-    DatePicker,
-    MonthPicker: DatePicker.MonthPicker,
+export class DatePickerWrapper extends ComponentWrapper {
+  find(selector) {
+    return super.find(selector).find(Picker)
   }
 
-  function DatePickerWrapper() {}
-
-  DatePickerWrapper.prototype = wrapper
-
-  const datePickerWrapper = new DatePickerWrapper
-
-  const origFind = wrapper.find
-  datePickerWrapper.find = function(selector) {
-    return createDatePickerWrapper(
-      origFind.call(wrapper, components[component]).filterWhere(node => {
-        return isSubset(node.props(), selector)
-      }).find(Picker)
-    )
-  }
-
-  datePickerWrapper.simulate = function(event, mock) {
+  simulate(event, mock) {
     let { value } = mock.target
     const date = new GregorianCalendar(GregorianCalendarLocale)
     date.setTime(+new Date(value))
-    this.node.onCalendarSelect(date)
+    this.wrapper.node.onCalendarSelect(date)
   }
-
-  return datePickerWrapper
 }
 
-export function createRangePickerWrapper(wrapper) {
-  function RangePickerWrapper() {}
-
-  RangePickerWrapper.prototype = wrapper
-
-  const rangePickerWrapper = new RangePickerWrapper
-
-  const origFind = wrapper.find
-  rangePickerWrapper.find = function(selector) {
-    return createRangePickerWrapper(
-      origFind.call(wrapper, RangePicker).filterWhere(node => {
-        return isSubset(node.props(), selector)
-      })
-    )
-  }
-
-  rangePickerWrapper.simulate = function(event, mock) {
+export class RangePickerWrapper extends ComponentWrapper {
+  simulate(event, mock) {
     let { value } = mock.target
     const values = value.map(v => {
       const date = new GregorianCalendar(GregorianCalendarLocale)
       date.setTime(+new Date(v))
       return date
     })
-    this.node.handleChange(values)
+    this.wrapper.node.handleChange(values)
   }
-
-  return rangePickerWrapper
 }
 
-export function createCascaderWrapper(wrapper) {
-  function CascaderWrapper() {}
-
-  CascaderWrapper.prototype = wrapper
-
-  const cascaderWrapper = new CascaderWrapper
-
-  const origFind = wrapper.find
-  cascaderWrapper.find = function(selector) {
-    return createCascaderWrapper(
-      origFind.call(wrapper, Cascader).filterWhere(node => {
-        return isSubset(node.props(), selector)
-      })
-    )
-  }
-
-  cascaderWrapper.simulate = function(event, mock) {
+export class CascaderWrapper extends ComponentWrapper {
+  simulate(event, mock) {
     const findOptions = (options, values, selectedOptions = []) => {
       const [ value, ...rest ] = values
       const option = options.find(option => option.value === value)
@@ -122,33 +77,15 @@ export function createCascaderWrapper(wrapper) {
       return selectedOptions
     }
     let { value } = mock.target
-    this.node.handleChange(value, findOptions(this.props().options, value))
+    const selectedOptions = findOptions(this.wrapper.props().options, value)
+    this.wrapper.node.handleChange(value, selectedOptions)
   }
-
-  return cascaderWrapper
 }
 
-export function createRateWrapper(wrapper) {
-  function RateWrapper() {}
-
-  RateWrapper.prototype = wrapper
-
-  const rateWrapper = new RateWrapper
-
-  const origFind = wrapper.find
-  rateWrapper.find = function(selector) {
-    return createRateWrapper(
-      origFind.call(wrapper, Rate).filterWhere(node => {
-        return isSubset(node.props(), selector)
-      })
-    )
-  }
-
-  rateWrapper.simulate = function(event, mock) {
+export class RateWrapper extends ComponentWrapper {
+  simulate(event, mock) {
     const { value } = mock.target
-    this.node.getStarValue = () => value
-    this.node.onClick(mock)
+    this.wrapper.node.getStarValue = () => value
+    this.wrapper.node.onClick(mock)
   }
-
-  return rateWrapper
 }

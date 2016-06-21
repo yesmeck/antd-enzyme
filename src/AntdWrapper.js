@@ -1,30 +1,39 @@
 import {
-  createSelectWrapper,
-  createDatePickerWrapper,
-  createRangePickerWrapper,
-  createCascaderWrapper,
-  createRateWrapper,
+  SelectWrapper,
+  DatePickerWrapper,
+  RangePickerWrapper,
+  CascaderWrapper,
+  RateWrapper,
 } from './componentWrappers'
 
 export default class AntdWrapper {
-  constructor(wrapper) {
+  constructor(wrapper, component) {
     this.wrapper = wrapper
-  }
+    this.component = component
 
-  find(component, selector) {
-    switch (component) {
+    switch (this.component) {
       case 'Select':
-        return createSelectWrapper(this.wrapper).find(selector)
+        this.ComponentWrapper = SelectWrapper
+        break
       case 'DatePicker':
       case 'MonthPicker':
-        return createDatePickerWrapper(this.wrapper, component).find(selector)
+        this.ComponentWrapper = DatePickerWrapper
+        break
       case 'RangePicker':
-        return createRangePickerWrapper(this.wrapper).find(selector)
+        this.ComponentWrapper = RangePickerWrapper
+        break
       case 'Cascader':
-        return createCascaderWrapper(this.wrapper).find(selector)
+        this.ComponentWrapper = CascaderWrapper
+        break
       case 'Rate':
-        return createRateWrapper(this.wrapper).find(selector)
-      break
+        this.ComponentWrapper = RateWrapper
+        break
     }
+  }
+
+  find(selector) {
+    return new this.ComponentWrapper(
+      new this.ComponentWrapper(this.wrapper, this.component).find(selector)
+    )
   }
 }

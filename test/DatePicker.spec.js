@@ -22,7 +22,7 @@ test.beforeEach(t => {
 
 test('basic', t => {
   const { handleChange, wrapper } = t.context
-  const datePicker = wrapper.antd().find('DatePicker', { name: 'basic' })
+  const datePicker = wrapper.antd('DatePicker').find({ name: 'basic' })
 
   datePicker.simulate('change', { target: { value: '2016-06-20' } })
 
@@ -33,7 +33,7 @@ test('basic', t => {
 
 test('month picker', t => {
   const { handleChange, wrapper } = t.context
-  const monthPicker = wrapper.antd().find('MonthPicker', { name: 'month' })
+  const monthPicker = wrapper.antd('MonthPicker').find({ name: 'month' })
 
   monthPicker.simulate('change', { target: { value: '2016-06' } })
 
@@ -44,7 +44,7 @@ test('month picker', t => {
 
 test('range picker', t => {
   const { handleChange, wrapper } = t.context
-  const rangePicker = wrapper.antd().find('RangePicker', { name: 'range' })
+  const rangePicker = wrapper.antd('RangePicker').find({ name: 'range' })
 
   rangePicker.simulate('change', { target: { value: ['2016-06-01', '2016-06-30'] } })
 

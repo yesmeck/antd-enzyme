@@ -21,7 +21,7 @@ test.beforeEach(t => {
 
 test('basic', t => {
   const { handleChange, wrapper } = t.context
-  const datePicker = wrapper.antd().find('Rate', { name: 'basic' })
+  const datePicker = wrapper.antd('Rate').find({ name: 'basic' })
 
   datePicker.simulate('change', { target: { value: 3 } })
 
@@ -31,7 +31,7 @@ test('basic', t => {
 
 test('allow half', t => {
   const { handleChange, wrapper } = t.context
-  const datePicker = wrapper.antd().find('Rate', { name: 'allowHalf' })
+  const datePicker = wrapper.antd('Rate').find({ name: 'allowHalf' })
 
   datePicker.simulate('change', { target: { value: 3.5 } })
 
