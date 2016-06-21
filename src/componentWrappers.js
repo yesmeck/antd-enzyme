@@ -5,6 +5,7 @@ import Select from 'rc-select'
 import { DatePicker, Cascader } from 'antd'
 import RangePicker from 'antd/lib/date-picker/RangePicker'
 import Picker from 'rc-calendar/lib/Picker'
+import Rate from 'rc-rate/lib/Rate'
 
 export function createSelectWrapper(wrapper) {
   function SelectWrapper() {}
@@ -125,4 +126,29 @@ export function createCascaderWrapper(wrapper) {
   }
 
   return cascaderWrapper
+}
+
+export function createRateWrapper(wrapper) {
+  function RateWrapper() {}
+
+  RateWrapper.prototype = wrapper
+
+  const rateWrapper = new RateWrapper
+
+  const origFind = wrapper.find
+  rateWrapper.find = function(selector) {
+    return createRateWrapper(
+      origFind.call(wrapper, Rate).filterWhere(node => {
+        return isSubset(node.props(), selector)
+      })
+    )
+  }
+
+  rateWrapper.simulate = function(event, mock) {
+    const { value } = mock.target
+    this.node.getStarValue = () => value
+    this.node.onClick(mock)
+  }
+
+  return rateWrapper
 }

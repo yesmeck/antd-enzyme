@@ -3,6 +3,7 @@ import {
   createDatePickerWrapper,
   createRangePickerWrapper,
   createCascaderWrapper,
+  createRateWrapper,
 } from './componentWrappers'
 
 export default class AntdWrapper {
@@ -21,6 +22,8 @@ export default class AntdWrapper {
         return createRangePickerWrapper(this.wrapper).find(selector)
       case 'Cascader':
         return createCascaderWrapper(this.wrapper).find(selector)
+      case 'Rate':
+        return createRateWrapper(this.wrapper).find(selector)
       break
     }
   }

@@ -29,6 +29,7 @@ test('app', t => {
 
 ## Supported components
 
-* DatePicker
-* Select
 * Cascader
+* DatePicker
+* Rate
+* Select
