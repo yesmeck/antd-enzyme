@@ -4,6 +4,7 @@ import { DatePicker, Cascader } from 'antd'
 import RangePicker from 'antd/lib/date-picker/RangePicker'
 import Rate from 'rc-rate/lib/Rate'
 import Slider from 'rc-slider/lib/Slider'
+import Switch from 'rc-switch/lib/Switch'
 
 const components = {
   Select,
@@ -13,6 +14,7 @@ const components = {
   Cascader,
   Rate,
   Slider,
+  Switch,
 }
 
 export default class ComponentWrapper {

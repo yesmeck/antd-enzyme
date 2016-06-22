@@ -34,3 +34,4 @@ test('app', t => {
 * Rate
 * Select
 * Slider
+* Switch
