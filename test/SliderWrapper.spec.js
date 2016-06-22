@@ -21,7 +21,7 @@ test.beforeEach(t => {
 
 test('basic', t => {
   const { handleChange, wrapper } = t.context
-  const slider = wrapper.antd('Slider').find({ name: 'basic' })
+  const slider = wrapper.antd().find('Slider', { name: 'basic' })
 
   slider.simulate('change', { target: { value: 80 } })
 

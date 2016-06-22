@@ -38,7 +38,7 @@ test.beforeEach(t => {
 
 test('basic', t => {
   const { handleChange, wrapper } = t.context
-  const select = wrapper.antd('Select').find({ name: 'basic' })
+  const select = wrapper.antd().find('Select', { name: 'basic' })
 
   select.simulate('change', { target: { value: 'green' } })
 
@@ -48,7 +48,7 @@ test('basic', t => {
 
 test('multiple', t => {
   const { handleChange, wrapper } = t.context
-  const select = wrapper.antd('Select').find({ name: 'multiple' })
+  const select = wrapper.antd().find('Select', { name: 'multiple' })
 
   select.simulate('change', { target: { value: ['apple', 'banana'] } })
 
@@ -58,7 +58,7 @@ test('multiple', t => {
 
 test('tag', t => {
   const { handleChange, wrapper } = t.context
-  const select = wrapper.antd('Select').find({ name: 'tags' })
+  const select = wrapper.antd().find('Select', { name: 'tags' })
 
   select.simulate('change', { target: { value: ['rock', 'jazz'] } })
 

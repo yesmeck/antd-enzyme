@@ -8,11 +8,12 @@ import {
 } from './componentWrappers'
 
 export default class AntdWrapper {
-  constructor(wrapper, component) {
+  constructor(wrapper) {
     this.wrapper = wrapper
-    this.component = component
+  }
 
-    switch (this.component) {
+  find(component, selector) {
+    switch (component) {
       case 'Select':
         this.ComponentWrapper = SelectWrapper
         break
@@ -33,11 +34,14 @@ export default class AntdWrapper {
         this.ComponentWrapper = SliderWrapper
         break
     }
+
+    this.componentWrapper = new this.ComponentWrapper(
+      new this.ComponentWrapper(this.wrapper, component).find(selector)
+    )
+    return this
   }
 
-  find(selector) {
-    return new this.ComponentWrapper(
-      new this.ComponentWrapper(this.wrapper, this.component).find(selector)
-    )
+  simulate(...args) {
+    this.componentWrapper.simulate(...args)
   }
 }

@@ -55,7 +55,7 @@ test.beforeEach(t => {
 
 test('basic', t => {
   const { handleChange, wrapper } = t.context
-  const cascader = wrapper.antd('Cascader').find({ name: 'basic' })
+  const cascader = wrapper.antd().find('Cascader', { name: 'basic' })
 
   cascader.simulate('change', { target: { value: ['zhejiang', 'hangzhou', 'xihu'] } })
 

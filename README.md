@@ -19,7 +19,7 @@ test('app', t => {
   const wrapper = mount(<SelectForm handleChange={handleChange} />)
 
   // Find antd's Select component which has a prop name="color"
-  const select = wrapper.antd('Select').find({ name: 'color' })
+  const select = wrapper.antd().find('Select', { name: 'color' })
 
   select.simulate('change', { target: { value: 'green' } })
 
