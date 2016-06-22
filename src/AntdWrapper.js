@@ -13,30 +13,31 @@ export default class AntdWrapper {
   }
 
   find(component, selector) {
+    let ComponentWrapper
     switch (component) {
       case 'Select':
-        this.ComponentWrapper = SelectWrapper
+        ComponentWrapper = SelectWrapper
         break
       case 'DatePicker':
       case 'MonthPicker':
-        this.ComponentWrapper = DatePickerWrapper
+        ComponentWrapper = DatePickerWrapper
         break
       case 'RangePicker':
-        this.ComponentWrapper = RangePickerWrapper
+        ComponentWrapper = RangePickerWrapper
         break
       case 'Cascader':
-        this.ComponentWrapper = CascaderWrapper
+        ComponentWrapper = CascaderWrapper
         break
       case 'Rate':
-        this.ComponentWrapper = RateWrapper
+        ComponentWrapper = RateWrapper
         break
       case 'Slider':
-        this.ComponentWrapper = SliderWrapper
+        ComponentWrapper = SliderWrapper
         break
     }
 
-    this.componentWrapper = new this.ComponentWrapper(
-      new this.ComponentWrapper(this.wrapper, component).find(selector)
+    this.componentWrapper = new ComponentWrapper(
+      new ComponentWrapper(this.wrapper, component).find(selector)
     )
     return this
   }
