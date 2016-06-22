@@ -1,5 +1,4 @@
 require('babel-register')
-require('babel-polyfill')
 require('ignore-styles').default(['.css', '.less', '.swf', '.png'])
 
 const exposedProperties = ['window', 'navigator', 'document'];
