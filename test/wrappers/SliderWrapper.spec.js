@@ -1,6 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
-import '../src/patch'
+import 'patch'
 import { mount } from 'enzyme'
 import React from 'react'
 import { Slider } from 'antd'

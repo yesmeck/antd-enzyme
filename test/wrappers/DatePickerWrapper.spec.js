@@ -1,6 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
-import '../src/patch'
+import 'patch'
 import { mount } from 'enzyme'
 import React from 'react'
 import { DatePicker } from 'antd'
@@ -31,7 +31,7 @@ test('basic', t => {
   t.is(handleChange.firstCall.args[1], '2016-06-20')
 })
 
-test('month picker', t => {
+test('month', t => {
   const { handleChange, wrapper } = t.context
   const monthPicker = wrapper.antd().find('MonthPicker', { name: 'month' })
 
@@ -42,7 +42,7 @@ test('month picker', t => {
   t.is(handleChange.firstCall.args[1], '2016-06')
 })
 
-test('range picker', t => {
+test('range', t => {
   const { handleChange, wrapper } = t.context
   const rangePicker = wrapper.antd().find('RangePicker', { name: 'range' })
 

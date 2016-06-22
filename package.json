@@ -4,7 +4,7 @@
   "description": "enzyme enhancer for Ant Design components",
   "main": "lib/patch.js",
   "scripts": {
-    "test": "ava"
+    "test": "NODE_PATH=src ava"
   },
   "author": "Wei Zhu <yesmeck@gmail.com>",
   "license": "MIT",

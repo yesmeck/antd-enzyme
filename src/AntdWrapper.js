@@ -5,7 +5,7 @@ import {
   CascaderWrapper,
   RateWrapper,
   SliderWrapper,
-} from './componentWrappers'
+} from './wrappers'
 
 export default class AntdWrapper {
   constructor(wrapper) {
