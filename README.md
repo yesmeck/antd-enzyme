@@ -29,9 +29,10 @@ test('app', t => {
 
 ## Supported components
 
-* Cascader
-* DatePicker
-* Rate
-* Select
-* Slider
-* Switch
+* [Cascader](test/wrappers/CascaderWrapper.spec.js)
+* [DatePicker](test/wrappers/DatePickerWrapper.spec.js)
+* [Rate](test/wrappers/RateWrapper.spec.js)
+* [Select](test/wrappers/SelectWrapper.spec.js)
+* [Slider](test/wrappers/SliderWrapper.spec.js)
+* [Switch](test/wrappers/SwitchWrapper.spec.js)
+* [TimePicker](test/wrappers/TimePickerWrapper.spec.js)
