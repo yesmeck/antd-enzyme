@@ -5,6 +5,7 @@ import RangePicker from 'antd/lib/date-picker/RangePicker'
 import Rate from 'rc-rate/lib/Rate'
 import Slider from 'rc-slider/lib/Slider'
 import Switch from 'rc-switch/lib/Switch'
+import TreeSelect from 'rc-tree-select/lib/Select'
 
 const components = {
   Select,
@@ -15,6 +16,7 @@ const components = {
   Rate,
   Slider,
   Switch,
+  TreeSelect,
 }
 
 export default class ComponentWrapper {

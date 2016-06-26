@@ -6,6 +6,7 @@ import {
   RateWrapper,
   SliderWrapper,
   SwitchWrapper,
+  TreeSelectWrapper,
 } from './wrappers'
 
 export default class AntdWrapper {
@@ -37,6 +38,9 @@ export default class AntdWrapper {
         break
       case 'Switch':
         ComponentWrapper = SwitchWrapper
+        break
+      case 'TreeSelect':
+        ComponentWrapper = TreeSelectWrapper
         break
     }
 
