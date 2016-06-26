@@ -7,6 +7,7 @@ import {
   SliderWrapper,
   SwitchWrapper,
   TreeSelectWrapper,
+  TimePickerWrapper,
 } from './wrappers'
 
 export default class AntdWrapper {
@@ -41,6 +42,8 @@ export default class AntdWrapper {
         break
       case 'TreeSelect':
         ComponentWrapper = TreeSelectWrapper
+      case 'TimePicker':
+        ComponentWrapper = TimePickerWrapper
         break
     }
 

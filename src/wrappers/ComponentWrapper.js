@@ -1,6 +1,6 @@
 import isSubset from 'is-subset'
 import Select from 'rc-select'
-import { DatePicker, Cascader } from 'antd'
+import { DatePicker, Cascader, TimePicker } from 'antd'
 import RangePicker from 'antd/lib/date-picker/RangePicker'
 import Rate from 'rc-rate/lib/Rate'
 import Slider from 'rc-slider/lib/Slider'
@@ -17,6 +17,7 @@ const components = {
   Slider,
   Switch,
   TreeSelect,
+  TimePicker,
 }
 
 export default class ComponentWrapper {
