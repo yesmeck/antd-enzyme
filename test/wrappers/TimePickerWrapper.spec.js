@@ -25,6 +25,6 @@ test('basic', t => {
   timePicker.simulate('change', { target: { value: '23:58:41' } })
 
   t.true(handleChange.calledOnce)
-  t.is(handleChange.firstCall.args[0].getTime(), new Date('2016-01-01 23:58:41').getTime())
+  t.is(handleChange.firstCall.args[0].getTime(), new Date('2016-01-01T23:58:41+08:00').getTime())
   t.is(handleChange.firstCall.args[1], '23:58:41')
 })

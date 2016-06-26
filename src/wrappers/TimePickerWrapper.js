@@ -6,7 +6,7 @@ export default class TimePickerWrapper extends ComponentWrapper {
   simulate(event, mock) {
     let { value } = mock.target
     const date = new GregorianCalendar(GregorianCalendarLocale)
-    date.setTime(+new Date(`2016-01-01 ${value}`))
+    date.setTime(+new Date(`2016-01-01T${value}+08:00`))
     this.wrapper.node.handleChange(date)
   }
 }
