@@ -10,42 +10,26 @@ import {
   TimePickerWrapper,
 } from './wrappers'
 
+const wrapperMap = {
+  Select: SelectWrapper,
+  DatePicker: DatePickerWrapper,
+  MonthPicker: DatePickerWrapper,
+  RangePicker: RangePickerWrapper,
+  Cascader: CascaderWrapper,
+  Rate: RateWrapper,
+  Slider: SliderWrapper,
+  Switch: SwitchWrapper,
+  TreeSelect: TreeSelectWrapper,
+  TimePicker: TimePickerWrapper,
+}
+
 export default class AntdWrapper {
   constructor(wrapper) {
     this.wrapper = wrapper
   }
 
   find(component, selector) {
-    let ComponentWrapper
-    switch (component) {
-      case 'Select':
-        ComponentWrapper = SelectWrapper
-        break
-      case 'DatePicker':
-      case 'MonthPicker':
-        ComponentWrapper = DatePickerWrapper
-        break
-      case 'RangePicker':
-        ComponentWrapper = RangePickerWrapper
-        break
-      case 'Cascader':
-        ComponentWrapper = CascaderWrapper
-        break
-      case 'Rate':
-        ComponentWrapper = RateWrapper
-        break
-      case 'Slider':
-        ComponentWrapper = SliderWrapper
-        break
-      case 'Switch':
-        ComponentWrapper = SwitchWrapper
-        break
-      case 'TreeSelect':
-        ComponentWrapper = TreeSelectWrapper
-      case 'TimePicker':
-        ComponentWrapper = TimePickerWrapper
-        break
-    }
+    const ComponentWrapper = wrapperMap[component]
 
     this.componentWrapper = new ComponentWrapper(
       new ComponentWrapper(this.wrapper, component).find(selector)
